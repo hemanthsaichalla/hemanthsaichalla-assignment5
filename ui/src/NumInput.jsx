@@ -19,7 +19,7 @@ export default class NumInput extends React.Component {
 
   onChange(e) {
     if (e.target.value.match(/[-+]?[0-9]*\.?[0-9]+$/)) {
-      this.setState({ value: e.target.value });
+      this.setState({ value: parseFloat(e.target.value, 10) });
     }
   }
 

@@ -17,7 +17,7 @@ export default class ProductView extends React.Component {
         id Name Price Category Image
       }
     }`;
-    const { match: { params: { id } } } = this.props;
+    const id = parseInt(this.props.match.params.id, 10)
     const data = await graphQLFetch(query, { id });
     this.setState({ product: data.Product });
   }

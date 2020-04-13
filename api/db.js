@@ -13,13 +13,18 @@ async function connectToDb() {
   db = client.db();
 }
 
+// async function getNextSequence(name) {
+//   const result = await db.collection('counters').findOneAndUpdate(
+//     { _id: name },
+//     { $inc: { current: 1 } },
+//     { returnOriginal: false },
+//   );
+//   return result.value.current;
+// }
 async function getNextSequence(name) {
-  const result = await db.collection('counters').findOneAndUpdate(
-    { _id: name },
-    { $inc: { current: 1 } },
-    { returnOriginal: false },
-  );
-  return result.value.current;
+  const result = await db.collection('products').countDocuments({})
+  console.log(result)
+  return result;
 }
 
 function getDb() {

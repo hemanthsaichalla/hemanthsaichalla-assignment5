@@ -137,11 +137,12 @@ export default class MyProductList extends React.Component {
   }
 
   async createProduct(product) {
-    const query = `mutation productAdd($product: ProductInputs!) {
+    const query = `mutation productAdd($product: ProductInputs!) {      
       productAdd(product: $product) {
         id
       }
     }`;
+    product.Price = parseFloat(product.Price, 10);
     const data = await graphQLFetch(query, { product });
     if (data) {
       this.retrieveData();

@@ -26,11 +26,20 @@ export default class ProductEdit extends React.Component {
     }
   }
 
+  // onChange(event, naturalValue) {
+  //   const { name, value: textValue } = event.target;
+  //   const value = naturalValue === undefined ? textValue : naturalValue;
+  //   this.setState(prevState => ({
+  //     product: { ...prevState.product, [name]: value },
+  //   }));
+  // }
   onChange(event, naturalValue) {
     const { name, value: textValue } = event.target;
     const value = naturalValue === undefined ? textValue : naturalValue;
+    window.console.log(this.props)
+    const id = parseInt(this.props.match.params.id, 10)
     this.setState(prevState => ({
-      product: { ...prevState.product, [name]: value },
+      product: { ...prevState.product, [name]: value, 'id': id },
     }));
   }
 
@@ -50,6 +59,7 @@ export default class ProductEdit extends React.Component {
     }`;
 
     const { id, ...modify } = product;
+    window.console.log("my product"+ JSON.stringify(product));
     const data = await graphQLFetch(query, { modify, id });
     if (data) {
       this.setState({ product: data.productUpdate });
@@ -57,13 +67,23 @@ export default class ProductEdit extends React.Component {
     }
   }
 
+  // async retrieveData() {
+  //   const query = `query Product($id: Int!) {
+  //     Product(id: $id) {
+  //       id Name Price Category Image
+  //     }
+  //   }`;
+  //   const { match: { params: { id } } } = this.props;
+  //   const data = await graphQLFetch(query, { id });
+  //   this.setState({ product: data.Product });
+  // }
   async retrieveData() {
     const query = `query Product($id: Int!) {
       Product(id: $id) {
         id Name Price Category Image
       }
     }`;
-    const { match: { params: { id } } } = this.props;
+    const id = parseInt(this.props.match.params.id, 10)
     const data = await graphQLFetch(query, { id });
     this.setState({ product: data.Product });
   }
