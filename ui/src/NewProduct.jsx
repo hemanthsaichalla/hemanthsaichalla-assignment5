@@ -26,13 +26,6 @@ export default class ProductEdit extends React.Component {
     }
   }
 
-  // onChange(event, naturalValue) {
-  //   const { name, value: textValue } = event.target;
-  //   const value = naturalValue === undefined ? textValue : naturalValue;
-  //   this.setState(prevState => ({
-  //     product: { ...prevState.product, [name]: value },
-  //   }));
-  // }
   onChange(event, naturalValue) {
     const { name, value: textValue } = event.target;
     const value = naturalValue === undefined ? textValue : naturalValue;
@@ -67,16 +60,6 @@ export default class ProductEdit extends React.Component {
     }
   }
 
-  // async retrieveData() {
-  //   const query = `query Product($id: Int!) {
-  //     Product(id: $id) {
-  //       id Name Price Category Image
-  //     }
-  //   }`;
-  //   const { match: { params: { id } } } = this.props;
-  //   const data = await graphQLFetch(query, { id });
-  //   this.setState({ product: data.Product });
-  // }
   async retrieveData() {
     const query = `query Product($id: Int!) {
       Product(id: $id) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import MyProductList from './ProductList.jsx';
 import ProductView from './ProductView.jsx';
-import ProductEdit from './new.jsx';
+import ProductEdit from './NewProduct.jsx';
 
 const NotFound = () => <h1>Page Not Found</h1>;
 
